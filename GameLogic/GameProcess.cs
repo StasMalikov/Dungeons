@@ -10,35 +10,60 @@ namespace GameLogic
     public class GameProcess
     {
         public List<Level> Levels { get; set; }
-        public List<Charecter> HeroesForChoice { get; set; }
         public List<Charecter> Players { get; set; }
-        public UserInterface.Сonsole_interaction input;
-
-
+        public UserInterface.Сonsole_interaction CI;
+        public int type1;
+        public int type2;
 
         public GameProcess()
         {
-            input = new Сonsole_interaction();
+            CI = new Сonsole_interaction();
             Levels = new List<Level>();
             for (int i = 0; i < 21; i++)
             {
                 Levels.Add(new Level(i));
             }
-
-            HeroesForChoice = new List<Charecter>();
-            HeroesForChoice.Add(new Man_magician(30,13,15));
-            HeroesForChoice.Add(new Scout_elf(40,12,24));
-            HeroesForChoice.Add(new Dwarf_warrior(50,15,20));
+            Players = new List<Charecter>();
         }
 
-        public void Choice_person(int gamer,int hero)
+        public void Choice_person()
         {
-            Players[gamer] = HeroesForChoice[hero];
+            string[] arr = CI.Choice_character();
+            switch (Convert.ToInt32(arr[0]))
+            {
+                case 0:
+                    Players.Add ( new Man_magician(30,13,15));
+                    type1 = 0;
+                    break;
+                case 1:
+                    Players.Add(new Dwarf_warrior(50, 15, 20));
+                    type1 = 1;
+                    break;
+                case 2:
+                    Players.Add(new Scout_elf(40, 12, 24));
+                    type1 = 2;
+                    break;
+            }
+            switch (Convert.ToInt32(arr[1]))
+            {
+                case 0:
+                    Players.Add(new Man_magician(30, 13, 15));
+                    type2 = 0;
+                    break;
+                case 1:
+                    Players.Add(new Dwarf_warrior(50, 15, 20));
+                    type2 = 1;
+                    break;
+                case 2:
+                    Players.Add(new Scout_elf(40, 12, 24));
+                    type2 = 2;
+                    break;
+            }
         }
 
         public void Turn(int player)
         {
-            if (Players[player].Make_move(input.Choice_action(0,0), this) >= 0)
+            if (Players[player].Make_move(CI.Get_Action(Players[player].Fast_descent_cost, Players[player].Special_action_cost), this) >= 0)
             {
                 //получилось походить
             }
@@ -51,29 +76,35 @@ namespace GameLogic
         public int StartGame()
         {
             Random rnd = new Random();
-            int turn= rnd.Next(1,2);//рандомно выбирается первый ход
+            int turn= rnd.Next(0,2);//рандомно выбирается первый ход
             int win_player;
             while (true)
             {
+                Console.Clear();
+                CI.Draw_levels(Players[0].Lvl, Players[1].Lvl);
+                
                 if (turn % 2 == 0)//ходит первый игрок
                 {
+                    CI.Show_status(1, Players[0].Stamina,type1);
                     Turn(0);
                     if (Players[0].Lvl==20)
                     {
                         win_player = 0;
+                        CI.WinMessage(1);
                         break;
                     }
                 }
                 else//ходит второй игрок игрок
                 {
+                    CI.Show_status(2, Players[1].Stamina,type2);
                     Turn(1);
                     if (Players[1].Lvl == 20)
                     {
                         win_player = 1;
+                        CI.WinMessage(2);
                         break;
                     }
                 }
-
                 ++turn;
             }
             return win_player;

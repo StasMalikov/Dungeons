@@ -8,6 +8,49 @@ namespace UserInterface
 {
    public class Сonsole_interaction
     {
+        public string[] Choice_character()
+        {
+            string player1;
+            string player2="";
+            Console.WriteLine("1 игрок");
+            Console.WriteLine("Выбор персонажа");
+            Console.WriteLine("--- Человек-маг --- для выбора введите \"0\"");
+            Console.WriteLine("--- Гном-воин --- для выбора введите \"1\"");
+            Console.WriteLine("--- Эльф-разведчик --- для выбора введите \"2\"");
+            Console.Write("---Ввод:");
+            player1 = Console.ReadLine();
+
+            if(player1=="0")
+            {
+                Console.WriteLine("2 игрок");
+                Console.WriteLine("Выбор персонажа");
+                Console.WriteLine("--- Гном-воин --- для выбора введите \"1\"");
+                Console.WriteLine("--- Эльф-разведчик --- для выбора введите \"2\"");
+                Console.Write("---Ввод:");
+                player2 = Console.ReadLine();
+            }
+            else if(player1 == "1")
+            {
+                Console.WriteLine("2 игрок");
+                Console.WriteLine("Выбор персонажа");
+                Console.WriteLine("--- Человек-маг --- для выбора введите \"0\"");
+                Console.WriteLine("--- Эльф-разведчик --- для выбора введите \"2\"");
+                Console.Write("---Ввод:");
+                player2 = Console.ReadLine();
+            }
+            else if(player1 == "2")
+            {
+                Console.WriteLine("2 игрок");
+                Console.WriteLine("Выбор персонажа");
+                Console.WriteLine("--- Человек-маг --- для выбора введите \"0\"");
+                Console.WriteLine("--- Гном-воин --- для выбора введите \"1\"");
+                Console.Write("---Ввод:");
+                player2 = Console.ReadLine();
+            }
+            return new string[2] {player1,player2};
+
+        }
+        
         public string Choice_action(int fdescent_cost,int special_cost)
         {
             string input = "";
@@ -15,7 +58,7 @@ namespace UserInterface
             Console.WriteLine("-ОТДЫХ, расход выносливости:0 , для выбора введите \"x\"");
             Console.WriteLine("-СПУСК, расход выносливости:5 , для выбора введите \"c\"");
             Console.WriteLine("-БЫСТРЫЙ СПУСК, расход выносливости:{0} , для выбора введите \"v\"",fdescent_cost);
-            Console.WriteLine("-ОСОБОЕ ДЕЙСТВИЕ, расход выносливости:{0} , для выбора введите \"x\"",special_cost);
+            Console.WriteLine("-ОСОБОЕ ДЕЙСТВИЕ, расход выносливости:{0} , для выбора введите \"b\"",special_cost);
             Console.Write("---Ввод:");
             input = Console.ReadLine();
             if((input=="x")||(input == "c")||(input == "v")||(input == "b"))
@@ -28,14 +71,70 @@ namespace UserInterface
             return input;
         }
 
-
-        public void Show_status(int player_num,int stamina)
+        public string Get_Action(int fdescent_cost, int special_cost)
         {
-            Console.WriteLine("Ход {0} игрока, выносливость: {1}",player_num,stamina);
+            string result = Choice_action(fdescent_cost,special_cost);
+            switch (result)
+            {
+                case "x":
+                    {
+                        return "rest";
+                    }
+                case "c":
+                    {
+                        return "descent";
+                    }
+                case "v":
+                    {
+                        return "fast_descent";
+                    }
+                case "b":
+                    {
+                        return "special_action";
+                    }
+            }
+            return "";
         }
 
-        public void Draw_levels(int player1LvL, int player2LvL,int min, int max )
+
+        public void Show_status(int player_num,int stamina,int person_type)
         {
+            Console.WriteLine("Ход {0} игрока, выносливость: {1}",player_num,stamina);
+            switch (person_type)
+            {
+                case 0:
+                    Console.WriteLine("Тип персонажа Человек-маг");
+                    break;
+                case 1:
+                    Console.WriteLine("Тип персонажа Гном-воин");
+                    break;
+                case 2:
+                    Console.WriteLine("Тип персонажа Эльф-разведчик");
+                    break;
+            }
+        }
+
+
+
+        public void Draw_levels(int player1LvL, int player2LvL )
+        {
+            int min;
+            int max;
+            if(player1LvL>player2LvL)
+            {
+                min = player2LvL;
+                max = player1LvL;
+            }else if (player1LvL < player2LvL)
+            {
+                max = player2LvL;
+                min = player1LvL;
+            }
+            else
+            {
+                max = player2LvL;
+                min = player2LvL;
+            }
+
             Console.WriteLine("|");
 
             for (int i = min; i <= max; i++)
@@ -59,7 +158,14 @@ namespace UserInterface
                     Console.WriteLine("|");
             }
             Console.WriteLine("------------------------------------------------");
+        }
 
+        public int WinMessage(int player)
+        {
+            Console.WriteLine("Победил {0} игрок.Он первым добрался до 20 уровня.",player);
+            Console.WriteLine("Выберете дальнейшее действие:");
+            //Console.WriteLine("");
+            return 0;
         }
     }
 }

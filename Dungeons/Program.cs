@@ -11,9 +11,9 @@ namespace Dungeons
     {
         static void Main(string[] args)
         {
-            UserInterface.Сonsole_interaction UI = new Сonsole_interaction();
-            UI.Draw_levels(1,5,1,5);
-            UI.Choice_action(13, 15);
+            GameLogic.GameProcess gp = new GameLogic.GameProcess();
+            gp.Choice_person();
+            gp.StartGame();
             Console.ReadKey();
         }
     }
