@@ -85,8 +85,8 @@ namespace GameLogic
             {
                 gp.Levels[Lvl].Persons.Remove(this);//удаляем с прошлого уровня
                 gp.Levels[Lvl + 1].Persons.Add(this);//добавляем на новый уровень
-                Lvl++;
                 gp.Levels[Lvl + 1].Modification = "block";
+                Lvl++;
                 Block_Lvl = true;
             }
                 Stamina += 2;
