@@ -21,52 +21,61 @@ namespace GameLogic
                 gp.Levels[Lvl].Modification = "";
                 Block_Lvl = false;
             }
+
             switch (action)
             {
                 case "rest":
                     Rest();
-                    break;
+                    return 0;
+
 
                 case "descent":
-                    if (Stamina < 5)
+                    if ((Stamina < 5) || gp.Levels[Lvl].Modification != "")
                         return -1;
                     else
                     {
                         if (gp.Levels.Count > Lvl + 1)
                         {
                             if (gp.Levels[Lvl + 1].Modification == "")
+                            {
                                 Descent(gp);
+                                return 1;
+                            }
                         }
                     }
                     break;
 
                 case "fast_descent":
-                    if (Stamina < Fast_descent_cost)
+                    if ((Stamina < Fast_descent_cost) || gp.Levels[Lvl].Modification != "")
                         return -1;
                     else
                     {
                         if (gp.Levels.Count > Lvl + 1)
                         {
                             if (gp.Levels[Lvl + 1].Modification == "")
+                            {
                                 Fast_descent(gp);
+                                return 2;
+                            }
                         }
                     }
                     break;
 
                 case "special_action":
-                    if (Stamina < Special_action_cost)
+                    if ((Stamina < Special_action_cost) || gp.Levels[Lvl].Modification != "")
                         return -1;
                     else
                     {
                         if (gp.Levels.Count > Lvl + 1)
                         {
                             Special_action(gp);
+                            return 3;
                         }
                     }
                     break;
 
             }
-            return 0;
+            return -1;
         }
 
         public override void Special_action(GameProcess gp)

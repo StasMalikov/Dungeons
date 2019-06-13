@@ -17,7 +17,5 @@ namespace GameLogic
             Persons= new List<Charecter>();
             Modification = "";
         }
-             
-
     }
 }

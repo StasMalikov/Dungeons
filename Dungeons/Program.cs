@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UserInterface;
 
 namespace Dungeons
 {
@@ -10,8 +11,10 @@ namespace Dungeons
     {
         static void Main(string[] args)
         {
-            Console.Write("hello world!");
-            Console.Read();
+            UserInterface.Сonsole_interaction UI = new Сonsole_interaction();
+            UI.Draw_levels(1,5,1,5);
+            UI.Choice_action(13, 15);
+            Console.ReadKey();
         }
     }
 }

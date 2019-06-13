@@ -28,7 +28,8 @@ namespace GameLogic
             {
                 case "rest":
                     Rest();
-                    break;
+                    return 0;
+                    
 
                 case "descent":
                     if ((Stamina < 5)|| gp.Levels[Lvl].Modification != "")
@@ -38,7 +39,10 @@ namespace GameLogic
                         if (gp.Levels.Count > Lvl + 1)
                         {
                             if (gp.Levels[Lvl + 1].Modification == "")
+                            {
                                 Descent(gp);
+                                return 1;
+                            }
                         }
                     }
                     break;
@@ -51,7 +55,10 @@ namespace GameLogic
                         if (gp.Levels.Count > Lvl + 1)
                         {
                             if (gp.Levels[Lvl + 1].Modification == "")
+                            {
                                 Fast_descent(gp);
+                                return 2;
+                            }
                         }
                     }
                     break;
@@ -64,12 +71,13 @@ namespace GameLogic
                         if (gp.Levels.Count > Lvl + 1)
                         {
                             Special_action(gp);
+                            return 3;
                         }
                     }
                     break;
 
             }
-            return 0;
+            return -1;
         }
         public virtual void Special_action(GameProcess gp)
         {

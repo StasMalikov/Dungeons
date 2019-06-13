@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dungeons", "Dungeons\Dungeo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLogic", "GameLogic\GameLogic.csproj", "{7A9EF0D4-F118-446E-90ED-E07062B989BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "UserInterface\UserInterface.csproj", "{0629F545-5FB8-40E1-BD44-8081188EA27F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7A9EF0D4-F118-446E-90ED-E07062B989BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A9EF0D4-F118-446E-90ED-E07062B989BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A9EF0D4-F118-446E-90ED-E07062B989BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0629F545-5FB8-40E1-BD44-8081188EA27F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0629F545-5FB8-40E1-BD44-8081188EA27F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0629F545-5FB8-40E1-BD44-8081188EA27F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0629F545-5FB8-40E1-BD44-8081188EA27F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

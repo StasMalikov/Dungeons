@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7A9EF0D4-F118-446E-90ED-E07062B989BC}</ProjectGuid>
+    <ProjectGuid>{0629F545-5FB8-40E1-BD44-8081188EA27F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GameLogic</RootNamespace>
-    <AssemblyName>GameLogic</AssemblyName>
+    <RootNamespace>UserInterface</RootNamespace>
+    <AssemblyName>UserInterface</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,19 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="persons\Charecter.cs" />
-    <Compile Include="persons\Dwarf_warrior.cs" />
-    <Compile Include="GameProcess.cs" />
-    <Compile Include="Level.cs" />
-    <Compile Include="persons\Man_magician.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="persons\Scout_elf.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UserInterface\UserInterface.csproj">
-      <Project>{0629f545-5fb8-40e1-bd44-8081188ea27f}</Project>
-      <Name>UserInterface</Name>
-    </ProjectReference>
+    <Compile Include="Сonsole_interaction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
