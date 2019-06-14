@@ -31,7 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="database\GameSave.cs" />
+    <Compile Include="database\GameSaveContext.cs" />
     <Compile Include="persons\Charecter.cs" />
     <Compile Include="persons\Dwarf_warrior.cs" />
     <Compile Include="GameProcess.cs" />
@@ -48,12 +57,17 @@
     <Compile Include="persons\Man_magician.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="persons\Scout_elf.cs" />
+    <Compile Include="database\Turn.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UserInterface\UserInterface.csproj">
       <Project>{0629f545-5fb8-40e1-bd44-8081188ea27f}</Project>
       <Name>UserInterface</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

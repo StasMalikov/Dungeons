@@ -14,9 +14,11 @@ namespace GameLogic
         public UserInterface.Сonsole_interaction CI;
         public int type1;
         public int type2;
+        GameSave GS;
 
         public GameProcess()
         {
+           GS = new GameSave(CI.GetSaveNum());
             CI = new Сonsole_interaction();
             Levels = new List<Level>();
             for (int i = 0; i < 21; i++)
@@ -61,15 +63,34 @@ namespace GameLogic
             }
         }
 
-        public void Turn(int player)
+        public void Turn(int player,int turn)
         {
-            if (Players[player].Make_move(CI.Get_Action(Players[player].Fast_descent_cost, Players[player].Special_action_cost), this) >= 0)
+            int result = Players[player].Make_move(CI.Get_Action(Players[player].Fast_descent_cost, Players[player].Special_action_cost), this);
+            if ( result>= 0)
             {
                 //получилось походить
+                string action="";
+                switch (result)
+                {
+                    case 0:
+                        action = "rest";
+                        break;
+                    case 1:
+                        action = "descent";
+                        break;
+                    case 2:
+                        action = "fast_descent";
+                        break;
+                    case 3:
+                        action = "special_action";
+                        break;
+                }
+                GS.Turns.Add(new Turn(turn, Players[player].Name, player+1, Players[player].Lvl, Players[player].Stamina,action));
+
             }
             else//ещё одна попытка походить
             {
-                Turn(player);
+                Turn(player,turn);
             }
         }
 
@@ -80,13 +101,14 @@ namespace GameLogic
             int win_player;
             while (true)
             {
+
                 Console.Clear();
                 CI.Draw_levels(Players[0].Lvl, Players[1].Lvl);
                 
                 if (turn % 2 == 0)//ходит первый игрок
                 {
                     CI.Show_status(1, Players[0].Stamina,type1);
-                    Turn(0);
+                    Turn(0,turn);
                     if (Players[0].Lvl==20)
                     {
                         win_player = 0;
@@ -97,7 +119,7 @@ namespace GameLogic
                 else//ходит второй игрок игрок
                 {
                     CI.Show_status(2, Players[1].Stamina,type2);
-                    Turn(1);
+                    Turn(1,turn);
                     if (Players[1].Lvl == 20)
                     {
                         win_player = 1;

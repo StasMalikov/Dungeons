@@ -50,6 +50,13 @@ namespace UserInterface
             return new string[2] {player1,player2};
 
         }
+
+        public int GetSaveNum()
+        {
+            Console.WriteLine("Для записи игры в базу данных введите номер сохранения");
+            Console.Write("---Ввод:");
+            return Convert.ToInt32(Console.ReadLine());
+        }
         
         public string Choice_action(int fdescent_cost,int special_cost)
         {

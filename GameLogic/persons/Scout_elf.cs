@@ -10,7 +10,7 @@ namespace GameLogic
     {
         public Scout_elf(int maxstamina, int fast_descent_cost, int special_cost) : base(maxstamina, fast_descent_cost, special_cost)
         {
-
+            Name = "Эльф-разведчик";
         }
 
         public override void Special_action(GameProcess gp)

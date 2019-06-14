@@ -8,12 +8,12 @@ namespace GameLogic
 {
    public class Dwarf_warrior:Charecter
     {
+        
         public bool Block_Lvl { get; set; }
         public Dwarf_warrior(int maxstamina, int fast_descent_cost, int special_cost) : base(maxstamina, fast_descent_cost, special_cost)
         {
-
+            Name = "Гном-воин";
         }
-
         public override int Make_move(string action, GameProcess gp)
         {
             if(Block_Lvl)//разблокировали ранее заблокированный уровень

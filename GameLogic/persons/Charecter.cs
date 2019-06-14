@@ -13,6 +13,7 @@ namespace GameLogic
         public int Fast_descent_cost { get; set; }
         public int Special_action_cost { get; set; }
         public int Lvl { get; set; }
+        public string Name { get; set; }
 
         public Charecter(int maxstamina, int fast_descent_cost, int special_cost)
         {

@@ -10,7 +10,7 @@ namespace GameLogic
     {
         public Man_magician(int maxstamina, int fast_descent_cost, int special_cost) : base(maxstamina, fast_descent_cost, special_cost)
         {
-
+            Name = "Человек-маг";
         }
 
         public override void Special_action(GameProcess gp)
