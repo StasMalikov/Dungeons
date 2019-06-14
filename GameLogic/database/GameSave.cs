@@ -13,6 +13,10 @@ namespace GameLogic
         public int Id { get; set; }
         public List<Turn> Turns { get; set; }
         public int NumOfSave;
+        public GameSave()
+        {
+
+        }
         public GameSave(int num_of_save)
         {
             Id = num_of_save;

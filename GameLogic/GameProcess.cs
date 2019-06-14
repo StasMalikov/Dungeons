@@ -141,7 +141,7 @@ namespace GameLogic
         {
             using (GameSaveContext db = new GameSaveContext())
             {
-                var saves = db.Saves;
+                var saves = db.Saves.ToList();
                 foreach(GameSave tmp in saves)
                 {
                     if (tmp.NumOfSave == num)

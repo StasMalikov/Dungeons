@@ -11,7 +11,6 @@ namespace GameLogic
     {
         public GameSaveContext() : base("DbConnection")
         {
-
         }
         public DbSet<GameSave> Saves { get; set; }
     }
