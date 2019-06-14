@@ -57,7 +57,14 @@ namespace UserInterface
             Console.Write("---Ввод:");
             return Convert.ToInt32(Console.ReadLine());
         }
-        
+
+        public static int GetSaveExistNum()
+        {
+            Console.WriteLine("Введите номер сохранённой игры");
+            Console.Write("---Ввод:");
+            return Convert.ToInt32(Console.ReadLine());
+        }
+
         public string Choice_action(int fdescent_cost,int special_cost)
         {
             string input = "";
@@ -171,8 +178,13 @@ namespace UserInterface
         {
             Console.WriteLine("Победил {0} игрок.Он первым добрался до 20 уровня.",player);
             Console.WriteLine("Выберете дальнейшее действие:");
-            //Console.WriteLine("");
-            return 0;
+            Console.WriteLine("- Воспроизвести игру, введите\"0\"");
+            Console.WriteLine("- Начать новую игру, введите\"1\"");
+            Console.WriteLine("- Выйти, введите\"2\"");
+            
+            Console.Write("---Ввод:");
+            int tmp = Convert.ToInt32(Console.ReadLine());
+            return tmp;
         }
     }
 }

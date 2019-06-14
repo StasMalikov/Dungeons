@@ -13,7 +13,19 @@ namespace Dungeons
         {
             GameLogic.GameProcess gp = new GameLogic.GameProcess();
             gp.Choice_person();
-            gp.StartGame();
+
+            int result = gp.StartGame();
+            if (result == 0)
+            {
+                GameLogic.SaveGameToConsole printgame = new GameLogic.SaveGameToConsole();
+                printgame.PrintGame(gp.Get_GameSave(UserInterface.Сonsole_interaction.GetSaveExistNum()));
+            }
+            if (result == 1)
+            {
+                GameLogic.GameProcess gp2 = new GameLogic.GameProcess();
+                gp2.Choice_person();
+                gp2.StartGame();
+            }
             Console.ReadKey();
         }
     }

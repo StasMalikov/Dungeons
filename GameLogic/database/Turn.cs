@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace GameLogic
 {
    public class Turn
     {
+        [Key]
         public int TurnNum { get; set; }
         public string Charecter  { get; set; }
         public int Lvl { get; set; }

@@ -58,6 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="persons\Scout_elf.cs" />
     <Compile Include="database\Turn.cs" />
+    <Compile Include="database\SaveGameToConsole.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UserInterface\UserInterface.csproj">
