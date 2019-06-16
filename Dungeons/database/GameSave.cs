@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace GameLogic
+namespace Dungeons
 {
-    public class GameSave 
+    public class GameSave
     {
         [Key]
         public int Id { get; set; }

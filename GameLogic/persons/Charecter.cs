@@ -82,7 +82,7 @@ namespace GameLogic
         }
         public virtual void Special_action(GameProcess gp)
         {
-
+            //у каждого персонажа это действие индивидуально
         }
 
         public void Rest()

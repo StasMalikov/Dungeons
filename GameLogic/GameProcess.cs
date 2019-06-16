@@ -9,18 +9,16 @@ namespace GameLogic
 {
     public class GameProcess
     {
-        public List<Level> Levels { get; set; }
+        public List<Level> Levels { get; set; } 
         public List<Charecter> Players { get; set; }
         public UserInterface.Сonsole_interaction CI;
-        public int type1;
-        public int type2;
-        GameSave GS;
+        public int type1; //тип персонажа игрока 1
+        public int type2; //тип персонажа игрока 2
 
         public GameProcess()
         {
-
             CI = new Сonsole_interaction();
-            GS = new GameSave(CI.GetSaveNum());
+            
             Levels = new List<Level>();
             for (int i = 0; i < 21; i++)
             {
@@ -64,8 +62,9 @@ namespace GameLogic
             }
         }
 
-        public void Turn(int player, int turn)
+        public void Turn(int player, int turn, GameSave GS)
         {
+            //персонаж делает ход
             int result = Players[player].Make_move(CI.Get_Action(Players[player].Fast_descent_cost, Players[player].Special_action_cost), this);
             if (result >= 0)
             {
@@ -87,68 +86,45 @@ namespace GameLogic
                         break;
                 }
                 GS.Turns.Add(new Turn(turn, Players[player].Name, player + 1, Players[player].Lvl, Players[player].Stamina, action));
+                // запоминаем что было сделанно в этот ход
 
             }
             else//ещё одна попытка походить
             {
-                Turn(player, turn);
+                Turn(player, turn,GS);
             }
         }
 
-        public int StartGame()
+        public int StartGame(GameSave GS)
         {
             Random rnd = new Random();
             int turn = rnd.Next(0, 2);//рандомно выбирается первый ход
             while (true)
             {
-
                 Console.Clear();
-                CI.Draw_levels(Players[0].Lvl, Players[1].Lvl);
+                CI.Draw_levels(Players[0].Lvl, Players[1].Lvl); //отрисовываем уровни
 
                 if (turn % 2 == 0)//ходит первый игрок
                 {
-                    CI.Show_status(1, Players[0].Stamina, type1);
-                    Turn(0, turn);
-                    if (Players[0].Lvl == 20)
+                    CI.Show_status(1, Players[0].Stamina, type1); //показываем состояние игрока
+                    Turn(0, turn,GS);//делаем ход
+                    if (Players[0].Lvl == 20)// проверка победы
                     {
-                        SaveGame();
                         return CI.WinMessage(1);
                     }
                 }
                 else//ходит второй игрок игрок
                 {
                     CI.Show_status(2, Players[1].Stamina, type2);
-                    Turn(1, turn);
+                    Turn(1, turn,GS);
                     if (Players[1].Lvl == 20)
                     {
-                        SaveGame();
                         return CI.WinMessage(2);
                     }
                 }
                 ++turn;
             }
         }
-        public void SaveGame()
-        {
-            using (GameSaveContext db = new GameSaveContext())
-            {
-                db.Saves.Add(GS);//добавляем нашу игру в бд
-                db.SaveChanges();//делаем сохранение в бд
-            }
-        }
-
-        public GameSave Get_GameSave(int num)
-        {
-            using (GameSaveContext db = new GameSaveContext())
-            {
-                var saves = db.Saves.ToList();
-                foreach(GameSave tmp in saves)
-                {
-                    if (tmp.NumOfSave == num)
-                        return tmp;
-                }
-            }
-            return new GameSave(-1);
-        }
+        
     }
 }

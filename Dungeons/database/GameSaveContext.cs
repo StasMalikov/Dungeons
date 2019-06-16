@@ -13,6 +13,5 @@ namespace GameLogic
         {
         }
         public DbSet<GameSave> Saves { get; set; }
-        public DbSet<Turn> Turns { get; set; }
     }
 }

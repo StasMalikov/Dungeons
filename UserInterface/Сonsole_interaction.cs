@@ -27,7 +27,16 @@ namespace UserInterface
                 Console.WriteLine("--- Гном-воин --- для выбора введите \"1\"");
                 Console.WriteLine("--- Эльф-разведчик --- для выбора введите \"2\"");
                 Console.Write("---Ввод:");
-                player2 = Console.ReadLine();
+                string res = Console.ReadLine();
+                if (Convert.ToInt32(res) == 0)
+                {
+                    Error();
+                    Console.Write("---Ввод:");
+                    player2 = Console.ReadLine();
+                }
+                else
+                    player2 = res;
+
             }
             else if(player1 == "1")
             {
@@ -36,7 +45,15 @@ namespace UserInterface
                 Console.WriteLine("--- Человек-маг --- для выбора введите \"0\"");
                 Console.WriteLine("--- Эльф-разведчик --- для выбора введите \"2\"");
                 Console.Write("---Ввод:");
-                player2 = Console.ReadLine();
+                string res= Console.ReadLine();
+                if (Convert.ToInt32(res) == 1)
+                {
+                    Error();
+                    Console.Write("---Ввод:");
+                    player2 = Console.ReadLine();
+                }
+                else
+                    player2 = res;
             }
             else if(player1 == "2")
             {
@@ -45,13 +62,26 @@ namespace UserInterface
                 Console.WriteLine("--- Человек-маг --- для выбора введите \"0\"");
                 Console.WriteLine("--- Гном-воин --- для выбора введите \"1\"");
                 Console.Write("---Ввод:");
-                player2 = Console.ReadLine();
+                string res = Console.ReadLine();
+                if (Convert.ToInt32(res) == 2)
+                {
+                    Error();
+                    Console.Write("---Ввод:");
+                    player2 = Console.ReadLine();
+                }
+                else
+                    player2 = res;
             }
             return new string[2] {player1,player2};
 
         }
 
-        public int GetSaveNum()
+        public void Error()
+        {
+            Console.WriteLine("Этот персонаж уже занят, выберете другого.");
+        }
+
+        public static int GetSaveNum()
         {
             Console.WriteLine("Для записи игры в базу данных введите номер сохранения");
             Console.Write("---Ввод:");
@@ -127,8 +157,6 @@ namespace UserInterface
                     break;
             }
         }
-
-
 
         public void Draw_levels(int player1LvL, int player2LvL )
         {
